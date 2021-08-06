@@ -20,7 +20,6 @@ export class UsersComponent implements OnInit {
   public editUser: User;
   public deleteUser: User;
 
-  
 
   constructor(private usersService: UsersService, private router: Router) { }
 
@@ -71,8 +70,29 @@ export class UsersComponent implements OnInit {
          }
        );
      }
-     
- 
+     public onUpdateUser(user: User):void {
+      this.usersService.updateUser(user).subscribe(
+        (response: User) => {
+          console.log(response);
+          this.getUsers();
+        },
+        (error: HttpErrorResponse) => {
+          alert(error.message);
+        }
+      );
+    }
+    public onDeleteUser(username: String): void {
+      this.usersService.deleteUser(username).subscribe(
+        (response: void) => {
+          console.log(response);
+          this.getUsers();
+        },
+        (error: HttpErrorResponse) => {
+          alert(error.message);
+        }
+      );
+    }
+  
     
 }
 

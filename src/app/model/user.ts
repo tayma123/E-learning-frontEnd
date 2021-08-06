@@ -6,7 +6,7 @@ export class User{
     nom:string;
     prenom:string;
     role: string;
-    actived:Boolean ;
+    isEnabled:Boolean ;
 }
 
 

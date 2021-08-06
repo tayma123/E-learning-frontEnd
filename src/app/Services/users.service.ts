@@ -29,12 +29,10 @@ export class UsersService{
         
         return this.http.get<User[]>(this.host+"/user/all");
     }  
-     public getUser(email:string):Observable<User>{
+     public getUser(username:string):Observable<User>{
         
-        return this.http.get<User>(`${this.host}/user/find/${email}`);
+        return this.http.get<User>(`${this.host}/user/find/${username}`);
     }
-    
-
     public addUser(user: User):Observable<User>{
         
         return this.http.post<User>(this.host+"/user/add", user);
@@ -43,10 +41,12 @@ export class UsersService{
         
       return this.http.post<User>(this.host+"/user/update", user);
   }
-    //public deleteUser(email: String):Observable<void>{
+  public loginUser(user: User):Observable<User>{
         
-       // return this.http.delete<void>(this.host+"/user/delete/"+email);
-   // }
+    return this.http.post<User>(this.host+"/login", user);
+}
+    
+    
        
   public deleteUser(username: String): Observable<void> {
     return this.http.delete<void>(`${this.host}/user/delete/${username}`);
